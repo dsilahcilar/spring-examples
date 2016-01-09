@@ -3,6 +3,7 @@ package com.saha.controller;
 import com.saha.model.User;
 import com.saha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.Collection;
 @RequestMapping(value = "/users")
 public class UserController {
     @Autowired
+    @Qualifier("jpaUserService")
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
