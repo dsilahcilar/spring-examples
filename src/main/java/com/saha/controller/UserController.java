@@ -1,5 +1,6 @@
 package com.saha.controller;
 
+import com.saha.annotations.JsonRestController;
 import com.saha.model.User;
 import com.saha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@RestController
+@JsonRestController
 @RequestMapping(value = "/users")
 public class UserController {
     @Autowired
