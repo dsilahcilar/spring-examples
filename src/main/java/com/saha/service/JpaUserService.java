@@ -18,6 +18,8 @@ public class JpaUserService implements UserService {
     @Autowired
     private DozerBeanMapper mapper;
 
+
+
     @Override
     public Collection<User> users() {
         Iterable<UserEntity> userEntities = userRepository.findAll();
