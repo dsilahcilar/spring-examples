@@ -1,6 +1,5 @@
 package com.saha.service;
 
-import com.saha.annotations.TestProfile;
 import com.saha.model.User;
 import com.saha.persistence.entity.TweetEntity;
 import com.saha.persistence.entity.UserEntity;
@@ -9,12 +8,9 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Service
-@TestProfile
 public class TweetService {
 
     @Autowired
