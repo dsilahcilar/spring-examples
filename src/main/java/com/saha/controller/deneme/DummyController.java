@@ -1,4 +1,4 @@
-package com.saha.controller;
+package com.saha.controller.deneme;
 
 import com.saha.persistence.entity.DummyEntity;
 import com.saha.service.DummyService;

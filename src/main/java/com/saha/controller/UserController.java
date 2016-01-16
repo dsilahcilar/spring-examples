@@ -34,6 +34,9 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
     public User update(@RequestBody User user, @PathVariable Long id) {
+        if (id == 99) {
+            throw new RuntimeException();
+        }
         return userService.update(id, user);
     }
 

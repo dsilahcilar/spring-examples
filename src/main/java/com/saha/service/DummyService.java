@@ -24,6 +24,9 @@ public class DummyService {
     }
 
     public DummyEntity update(DummyEntity dummy, Long id) {
+        if(id == 99) {
+            throw new RuntimeException();
+        }
         DummyEntity founded = dummyRepository.findOne(id);
         founded.setDescription(dummy.getDescription());
         founded.setUpdatable(dummy.getUpdatable());
