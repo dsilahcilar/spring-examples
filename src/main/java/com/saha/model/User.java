@@ -13,4 +13,5 @@ public class User {
     @Mapping("id")
     private String tcKimlik;
 
+
 }

@@ -1,5 +1,6 @@
 package com.saha.service;
 
+import com.saha.model.Tweet;
 import com.saha.model.User;
 import com.saha.persistence.entity.TweetEntity;
 import com.saha.persistence.entity.UserEntity;
@@ -8,7 +9,9 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class TweetService {
@@ -28,7 +31,7 @@ public class TweetService {
         return null;
     }
 
-    public Iterable<TweetEntity> save(TweetEntity tweet, Long userId) {
+    public List<Tweet> save(TweetEntity tweet, Long userId) {
         UserEntity userEntity = userRepository.findOne(userId);
 
         userEntity.getTweets().add(tweet);
@@ -36,7 +39,15 @@ public class TweetService {
 
         userEntity = userRepository.save(userEntity);
 
-        return userEntity.getTweets();
+        List<Tweet> tweetList = new ArrayList<>();
+
+        for (TweetEntity tweetEntity : userEntity.getTweets()) {
+            Tweet eachTweet = new Tweet();
+            mapper.map(tweetEntity, eachTweet);
+            tweetList.add(eachTweet);
+        }
+
+        return tweetList;
     }
 
     public Boolean delete(Long id) {

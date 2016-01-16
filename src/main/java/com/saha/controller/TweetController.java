@@ -1,6 +1,7 @@
 package com.saha.controller;
 
 import com.saha.annotations.JsonRestController;
+import com.saha.model.Tweet;
 import com.saha.model.User;
 import com.saha.persistence.entity.TweetEntity;
 import com.saha.service.TweetService;
@@ -19,7 +20,7 @@ public class TweetController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Iterable<TweetEntity> create(@RequestBody TweetEntity tweet, @PathVariable(value = "id") Long userId) {
+    public Iterable<Tweet> create(@RequestBody TweetEntity tweet, @PathVariable(value = "id") Long userId) {
         return tweetService.save(tweet,userId);
     }
 
