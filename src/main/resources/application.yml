@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: test
   datasource:
     url: jdbc:postgresql://localhost:5432/spring-demo
     username: demouser

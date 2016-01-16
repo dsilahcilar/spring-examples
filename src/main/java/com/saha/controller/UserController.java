@@ -14,7 +14,7 @@ import java.util.Collection;
 @RequestMapping(value = "/users")
 public class UserController {
     @Autowired
-    @Qualifier("jpaUserService")
+   // @Qualifier("jpaUserService")
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)

@@ -1,5 +1,6 @@
 package com.saha.service;
 
+import com.saha.annotations.TestProfile;
 import com.saha.model.User;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@TestProfile
 public class MemoryUserService implements UserService{
     private static final Map<Long, User> users = new HashMap<>();
 
