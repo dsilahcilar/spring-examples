@@ -16,6 +16,7 @@ public class DummyEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dami_seq")
     private Long id;
 
+    @Column(unique = true)
     private String description;
 
     @Column(updatable = false)

@@ -1,15 +1,11 @@
 package com.saha.controller;
 
-import com.saha.model.User;
 import com.saha.persistence.entity.DummyEntity;
 import com.saha.service.DummyService;
-import com.saha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
+import com.saha.model.TweetError;
 
 @RestController
 @RequestMapping(value = "/dummies")
@@ -29,8 +25,8 @@ public class DummyController {
         return dummyService.save(dummy);
     }
 
-    @RequestMapping(path = "/{id}" ,method = RequestMethod.PUT)
-    public DummyEntity create(@RequestBody DummyEntity dummy,@PathVariable Long id) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public DummyEntity create(@RequestBody DummyEntity dummy, @PathVariable Long id) {
         return dummyService.update(dummy, id);
     }
 
