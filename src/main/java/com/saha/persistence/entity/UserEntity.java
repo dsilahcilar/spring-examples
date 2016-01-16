@@ -23,11 +23,10 @@ public class UserEntity {
     @Column
     private String lastName;
 
-
     @OneToOne
     private ProfileEntity profile;
 
-    @OneToMany(mappedBy = "userEntity")
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.MERGE)
     private List<TweetEntity> tweets;
 
 }
