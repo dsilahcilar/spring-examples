@@ -30,8 +30,8 @@ public class TweetService {
     private DozerBeanMapper mapper;
 
     public Collection<Tweet> userTweets(Long userId) {
-        UserEntity userEntity = userRepository.findOne(userId);
-        return  convertToModel(userEntity.getTweets());
+        List<TweetEntity> tweets = tweetRepository.findTop5ByUserEntityIdOrderById(userId);
+        return  convertToModel(tweets);
     }
 
     public Collection<Tweet> tweets(Integer page, Integer size) {
