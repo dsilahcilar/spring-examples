@@ -60,6 +60,15 @@ public class JpaUserService implements UserService {
 
     @Override
     public User update(Long id, User user) {
-        return null;
+        UserEntity foundedUser = userRepository.findOne(id);
+
+        user.setTcKimlik(foundedUser.getId().toString());
+        mapper.map(user,foundedUser);
+
+        userRepository.save(foundedUser);
+
+        mapper.map(foundedUser,user);
+
+        return user;
     }
 }
