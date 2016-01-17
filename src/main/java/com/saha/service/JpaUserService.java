@@ -1,13 +1,11 @@
 package com.saha.service;
 
-import com.saha.annotations.ProdProfile;
 import com.saha.annotations.TestProfile;
 import com.saha.model.User;
 import com.saha.persistence.entity.UserEntity;
 import com.saha.persistence.repository.UserRepository;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -37,7 +35,10 @@ public class JpaUserService implements UserService {
 
     @Override
     public User users(Long id) {
-        return null;
+        UserEntity foundedUser = userRepository.findOne(id);
+        User user = new User();
+        mapper.map(foundedUser,user);
+        return user;
     }
 
     @Override
