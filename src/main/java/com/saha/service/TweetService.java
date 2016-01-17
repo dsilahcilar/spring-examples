@@ -28,17 +28,13 @@ public class TweetService {
     @Autowired
     private DozerBeanMapper mapper;
 
+    public Collection<Tweet> userTweets(Long userId) {
+        return null;
+    }
+
     public Collection<Tweet> tweets(Integer page, Integer size) {
         Page<TweetEntity> tweetEntities = tweetRepository.findAll(new PageRequest(page, size));
-
-        List<Tweet> tweets = new ArrayList<>();
-
-        for (TweetEntity tweetEntity : tweetEntities) {
-            Tweet tweet = new Tweet();
-            mapper.map(tweetEntity, tweet);
-            tweets.add(tweet);
-        }
-        return tweets;
+        return convertToModel(tweetEntities.getContent());
     }
 
     public User users(Long id) {
@@ -53,14 +49,16 @@ public class TweetService {
 
         userEntity = userRepository.save(userEntity);
 
-        List<Tweet> tweetList = new ArrayList<>();
+        return convertToModel(userEntity.getTweets());
+    }
 
-        for (TweetEntity tweetEntity : userEntity.getTweets()) {
+    private List<Tweet> convertToModel(List<TweetEntity> tweetEntities) {
+        List<Tweet> tweetList = new ArrayList<>();
+        for (TweetEntity tweetEntity : tweetEntities) {
             Tweet eachTweet = new Tweet();
             mapper.map(tweetEntity, eachTweet);
             tweetList.add(eachTweet);
         }
-
         return tweetList;
     }
 
