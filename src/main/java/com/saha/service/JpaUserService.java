@@ -34,6 +34,21 @@ public class JpaUserService implements UserService {
     }
 
     @Override
+    public  User findBy(String param) {
+        Collection<UserEntity> userEntities= userRepository.findByLastName(param);
+
+        for (UserEntity userEntity : userEntities) {
+            System.out.println("userEntity = " + userEntity);
+        }
+
+
+        User user= new User();
+
+        mapper.map(null,user);
+        return user;
+    }
+
+    @Override
     public User users(Long id) {
         UserEntity foundedUser = userRepository.findOne(id);
         User user = new User();

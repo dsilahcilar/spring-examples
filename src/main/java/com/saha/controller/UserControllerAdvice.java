@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice(annotations = JsonRestController.class)
 public class UserControllerAdvice {
 
-    @ExceptionHandler(value = DataIntegrityViolationException.class)
+ //   @ExceptionHandler(value = DataIntegrityViolationException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public TweetError handler() {
@@ -22,7 +22,7 @@ public class UserControllerAdvice {
         return tweetError;
     }
 
-    @ExceptionHandler(value = RuntimeException.class)
+   // @ExceptionHandler(value = RuntimeException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
     public TweetError allHandler() {

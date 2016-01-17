@@ -22,6 +22,11 @@ public class UserController {
         return userService.users();
     }
 
+    @RequestMapping(params = "lastName", method = RequestMethod.GET)
+    public User findUsers(@RequestParam String lastName) {
+        return userService.findBy(lastName);
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public User user(@PathVariable Long id) {
         return userService.users(id);

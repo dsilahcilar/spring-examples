@@ -40,4 +40,9 @@ public class MemoryUserService implements UserService{
         currentUser.setUserName(user.getUserName());
         return currentUser;
     }
+
+    @Override
+    public User findBy(String lastName) {
+        return null;
+    }
 }

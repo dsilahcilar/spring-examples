@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TweetService {
@@ -51,6 +52,10 @@ public class TweetService {
         userEntity = userRepository.save(userEntity);
 
         return convertToModel(userEntity.getTweets());
+    }
+
+    private List<Tweet> convertToModel(Set<TweetEntity> tweetEntities) {
+        return convertToModel(new ArrayList<TweetEntity>(tweetEntities));
     }
 
     private List<Tweet> convertToModel(List<TweetEntity> tweetEntities) {

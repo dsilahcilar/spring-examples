@@ -7,4 +7,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface TweetRepository extends PagingAndSortingRepository<TweetEntity,Long> {
 
+
 }
