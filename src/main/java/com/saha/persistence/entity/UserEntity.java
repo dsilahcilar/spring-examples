@@ -26,7 +26,7 @@ public class UserEntity {
     @OneToOne
     private ProfileEntity profile;
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "userEntity", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<TweetEntity> tweets;
 
 }
