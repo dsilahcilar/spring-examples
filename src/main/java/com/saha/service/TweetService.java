@@ -4,9 +4,12 @@ import com.saha.model.Tweet;
 import com.saha.model.User;
 import com.saha.persistence.entity.TweetEntity;
 import com.saha.persistence.entity.UserEntity;
+import com.saha.persistence.repository.TweetRepository;
 import com.saha.persistence.repository.UserRepository;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,11 +23,22 @@ public class TweetService {
     private UserRepository userRepository;
 
     @Autowired
+    private TweetRepository tweetRepository;
+
+    @Autowired
     private DozerBeanMapper mapper;
 
-    public Collection<TweetEntity> tweets() {
+    public Collection<Tweet> tweets(Integer page, Integer size) {
+        Page<TweetEntity> tweetEntities = tweetRepository.findAll(new PageRequest(page, size));
 
-        return null;
+        List<Tweet> tweets = new ArrayList<>();
+
+        for (TweetEntity tweetEntity : tweetEntities) {
+            Tweet tweet = new Tweet();
+            mapper.map(tweetEntity, tweet);
+            tweets.add(tweet);
+        }
+        return tweets;
     }
 
     public User users(Long id) {

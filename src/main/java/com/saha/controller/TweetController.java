@@ -26,9 +26,9 @@ public class TweetController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public Collection<User> users() {
-      //  return tweetService.users();
-        return null;
+    public Collection<Tweet> tweets(@RequestParam(defaultValue = "0") Integer page,
+                                    @RequestParam(defaultValue = "5") Integer size) {
+        return tweetService.tweets(page, size);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
