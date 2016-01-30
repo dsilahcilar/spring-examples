@@ -34,8 +34,8 @@ spring:
   profiles: test
 
   datasource:
-    username: demouser
-    password: demopass
+    username: ${DATABASE_USERNAME:demouser}
+    password: ${DATABASE_PASSWORD:demopass}
 
 
 
