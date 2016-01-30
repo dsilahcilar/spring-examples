@@ -10,12 +10,18 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+management:
+  context-path: /monitoring
 
 spring-rest:
   class:
     size: 6
     name: spring-class
     description: My class name is ${spring-rest.class.name} and size is ${spring-rest.class.size}
+    servers:
+      - server1.com
+      - server2.com
+      - server3.com
 
 
 
