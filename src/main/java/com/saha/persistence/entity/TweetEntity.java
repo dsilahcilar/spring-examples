@@ -2,8 +2,11 @@ package com.saha.persistence.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "tweets")
@@ -19,4 +22,11 @@ public class TweetEntity {
 
     @ManyToOne
     private UserEntity userEntity;
+
+    @CreatedDate
+    private Date createdDate;
+
+    @LastModifiedDate
+    private Date sonDegistirilme;
+
 }
