@@ -24,6 +24,7 @@ public class JpaUserService implements UserService {
 
 
     @Override
+    @Cacheable(value = "allusers")
     public Collection<User> users() {
         Iterable<UserEntity> userEntities = userRepository.findAll();
         List<User> users = new ArrayList<>();
@@ -51,7 +52,7 @@ public class JpaUserService implements UserService {
     }
 
     @Override
-    @Cacheable("users")
+    @Cacheable(value = "users", condition = "#id > 20")
     public User users(Long id) {
         UserEntity foundedUser = userRepository.findOne(id);
         User user = new User();
@@ -73,7 +74,7 @@ public class JpaUserService implements UserService {
 
 
     @Override
-    @CacheEvict(value = "users",allEntries = true)
+    @CacheEvict(value = "{users,allusers}",allEntries = true)
     public Boolean delete(Long id) {
         userRepository.delete(id);
         return true;
