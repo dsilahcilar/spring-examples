@@ -11,3 +11,11 @@ spring:
       ddl-auto: update
     show-sql: true
 
+spring-rest:
+  class:
+    size: 6
+    name: spring-class
+    description: My class name is ${spring-rest.class.name} and size is ${spring-rest.class.size}
+
+
+
