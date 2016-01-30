@@ -6,6 +6,8 @@ import com.saha.persistence.entity.UserEntity;
 import com.saha.persistence.repository.UserRepository;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -49,6 +51,7 @@ public class JpaUserService implements UserService {
     }
 
     @Override
+    @Cacheable("users")
     public User users(Long id) {
         UserEntity foundedUser = userRepository.findOne(id);
         User user = new User();
@@ -68,11 +71,14 @@ public class JpaUserService implements UserService {
         return savedUser;
     }
 
+
     @Override
+    @CacheEvict(value = "users",allEntries = true)
     public Boolean delete(Long id) {
         userRepository.delete(id);
         return true;
     }
+
 
     @Override
     public User update(Long id, User user) {

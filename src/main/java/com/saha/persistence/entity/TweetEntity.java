@@ -12,7 +12,7 @@ import java.util.Date;
 @Table(name = "tweets")
 @Getter
 @Setter
-public class TweetEntity {
+public class TweetEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -22,11 +22,5 @@ public class TweetEntity {
 
     @ManyToOne
     private UserEntity userEntity;
-
-    @CreatedDate
-    private Date createdDate;
-
-    @LastModifiedDate
-    private Date sonDegistirilme;
 
 }
