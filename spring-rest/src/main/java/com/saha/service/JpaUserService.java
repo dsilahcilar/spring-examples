@@ -24,7 +24,7 @@ public class JpaUserService implements UserService {
 
 
     @Override
-    @Cacheable(value = "allusers")
+    //@Cacheable(value = "allusers")
     public Collection<User> users() {
         Iterable<UserEntity> userEntities = userRepository.findAll();
         List<User> users = new ArrayList<>();

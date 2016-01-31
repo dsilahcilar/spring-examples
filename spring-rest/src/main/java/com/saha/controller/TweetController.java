@@ -5,7 +5,6 @@ import com.saha.model.Tweet;
 import com.saha.model.User;
 import com.saha.persistence.entity.TweetEntity;
 import com.saha.service.TweetService;
-import com.saha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
