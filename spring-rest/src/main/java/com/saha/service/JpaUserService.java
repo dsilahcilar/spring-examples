@@ -24,7 +24,7 @@ public class JpaUserService implements UserService {
 
 
     @Override
-    //@Cacheable(value = "allusers")
+    @Cacheable(value = "allusers")
     public Collection<User> users() {
         Iterable<UserEntity> userEntities = userRepository.findAll();
         List<User> users = new ArrayList<>();
@@ -37,17 +37,14 @@ public class JpaUserService implements UserService {
     }
 
     @Override
-    public  User findBy(String param) {
-        Collection<UserEntity> userEntities= userRepository.findByLastName(param);
-
+    public User findBy(String param) {
+        Collection<UserEntity> userEntities = userRepository.findByLastName(param);
         for (UserEntity userEntity : userEntities) {
             System.out.println("userEntity = " + userEntity);
         }
 
-
-        User user= new User();
-
-        mapper.map(null,user);
+        User user = new User();
+        mapper.map(null, user);
         return user;
     }
 
@@ -56,7 +53,7 @@ public class JpaUserService implements UserService {
     public User users(Long id) {
         UserEntity foundedUser = userRepository.findOne(id);
         User user = new User();
-        mapper.map(foundedUser,user);
+        mapper.map(foundedUser, user);
         return user;
     }
 
@@ -74,7 +71,7 @@ public class JpaUserService implements UserService {
 
 
     @Override
-    @CacheEvict(value = "{users,allusers}",allEntries = true)
+    @CacheEvict(value = {"users", "allusers"}, allEntries = true)
     public Boolean delete(Long id) {
         userRepository.delete(id);
         return true;
@@ -86,11 +83,11 @@ public class JpaUserService implements UserService {
         UserEntity foundedUser = userRepository.findOne(id);
 
         user.setTcKimlik(foundedUser.getId().toString());
-        mapper.map(user,foundedUser);
+        mapper.map(user, foundedUser);
 
         userRepository.save(foundedUser);
 
-        mapper.map(foundedUser,user);
+        mapper.map(foundedUser, user);
 
         return user;
     }
