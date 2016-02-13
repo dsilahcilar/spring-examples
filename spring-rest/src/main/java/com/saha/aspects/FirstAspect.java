@@ -39,4 +39,9 @@ public class FirstAspect {
         return result;
     }
 
+    @Before("within(com.saha..*)")
+    public void deneme() {
+        log.info("It works");
+    }
+
 }
