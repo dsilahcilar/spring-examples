@@ -14,7 +14,10 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class CacheConfiguration {
 
-  //  @Bean
+    //https://dzone.com/articles/spring-cache-abstraction-0
+
+
+    //  @Bean
     public CacheManager firtCacheManager() {
         GuavaCacheManager cacheManager = new GuavaCacheManager();
 
