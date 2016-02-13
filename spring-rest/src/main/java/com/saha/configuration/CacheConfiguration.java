@@ -10,10 +10,12 @@ import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
@@ -33,6 +35,23 @@ public class CacheConfiguration  extends CachingConfigurerSupport {
         cacheManager.setDefaultExpiration(10);
         return cacheManager;
     }
+
+    @Bean
+    public RedisTemplate redisTemplate(StringRedisSerializer stringRedisSerializer,
+                                       RedisConnectionFactory connectionFactory) {
+        RedisTemplate redisTemplate = new RedisTemplate();
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setStringSerializer(stringRedisSerializer);
+        redisTemplate.setConnectionFactory(connectionFactory);
+        return redisTemplate;
+    }
+
+    @Bean
+    public StringRedisSerializer stringRedisSerializer() {
+        StringRedisSerializer redisSerializer = new StringRedisSerializer(Charset.forName("UTF-8"));
+        return redisSerializer;
+    }
+
 
 
     //  @Bean
