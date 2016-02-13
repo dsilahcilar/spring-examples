@@ -5,10 +5,12 @@ import lombok.Setter;
 import lombok.ToString;
 import org.dozer.Mapping;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @ToString
-public class User {
+public class User implements Serializable {
     private String name;
     private String lastName;
     private String userName;
